@@ -1,1 +1,0 @@
-"use strict";const t=require("../common/vendor.js"),e={computed:{...t.mapGetters("m_cart",["total"])},watch:{total(){this.setBadge()}},onShow(){this.setBadge()},methods:{setBadge(){t.index.setTabBarBadge({index:2,text:this.total+""})}}};exports.badgeMix=e;

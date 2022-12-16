@@ -1,1 +1,0 @@
-<view class="my-search-container" style="{{'background-color:' + b}}" bindtap="{{c}}"><view class="my-search-box" style="{{'border-radius:' + a}}"><icon type="search" size="15"/><text class="placeholder">搜索</text></view></view>
