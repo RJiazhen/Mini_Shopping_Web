@@ -97,12 +97,15 @@
         uni.showModal({
           title: '提示',
           content: '确认退出登录吗？',
-          success(res) {
-            // 把地址、个人信息、token都清空
-            self.updateAddress({})
-            self.updateUserInfo({})
-            self.updateToken('')
+          success: function(res) {
+            if (res.confirm) {
+              // 把地址、个人信息、token都清空
+              self.updateAddress({})
+              self.updateUserInfo({})
+              self.updateToken('')
+            }
           }
+
         })
       }
     }
