@@ -5,6 +5,7 @@
       <my-search class="" v-on:myclick="gotoSearch"></my-search>
     </view>
     <!-- 轮播图-->
+    <watermark></watermark>
     <swiper :indicator-dots="true" :autoplay="true" :interval="3000" :duration="1000" :circular="true">
       <swiper-item v-for="(item ,i ) in swiperList" :key="i">
         <!-- 把商品id作为参数传递 -->

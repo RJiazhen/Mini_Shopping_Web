@@ -1,35 +1,38 @@
 <template>
-  <view class="cart-container" v-if="cart.length !== 0">
-    <!-- 地址区域 -->
-    <my-address></my-address>
-    <!-- 购物车区域 -->
-    <view>
-      <!-- 商品列表的标题区域 -->
-      <view class="cart-title">
-        <!-- 左侧图标 -->
-        <uni-icons type="shop" size="18"></uni-icons>
-        <!-- 右侧的文本 -->
-        <text class="cart-title-text">购物车</text>
+  <view class="">
+    <watermark></watermark>
+    <view class="cart-container" v-if="cart.length !== 0">
+      <!-- 地址区域 -->
+      <my-address></my-address>
+      <!-- 购物车区域 -->
+      <view>
+        <!-- 商品列表的标题区域 -->
+        <view class="cart-title">
+          <!-- 左侧图标 -->
+          <uni-icons type="shop" size="18"></uni-icons>
+          <!-- 右侧的文本 -->
+          <text class="cart-title-text">购物车</text>
 
+        </view>
+        <!-- 循环渲染购物车中商品信息 -->
+        <uni-swipe-action>
+          <template v-for="(goods, i) in cart" :key="i">
+            <uni-swipe-action-item :right-options="options" @click="swipeItemClick(goods)">
+              <my-goods :goods="goods" :showRadio="true" @radio-change="radioChangeHandler" :showNum="true"
+                @num-change="numberChangeHandler">
+              </my-goods>
+            </uni-swipe-action-item>
+          </template>
+        </uni-swipe-action>
       </view>
-      <!-- 循环渲染购物车中商品信息 -->
-      <uni-swipe-action>
-        <template v-for="(goods, i) in cart" :key="i">
-          <uni-swipe-action-item :right-options="options" @click="swipeItemClick(goods)">
-            <my-goods :goods="goods" :showRadio="true" @radio-change="radioChangeHandler" :showNum="true"
-              @num-change="numberChangeHandler">
-            </my-goods>
-          </uni-swipe-action-item>
-        </template>
-      </uni-swipe-action>
+      <!-- 结算菜单区域 -->
+      <my-settle></my-settle>
     </view>
-    <!-- 结算菜单区域 -->
-    <my-settle></my-settle>
-  </view>
-  <!-- 空白购物车区域 -->
-  <view class="empty-cart" v-else>
-    <image src="../../static/cart_empty@2x.png" class="empty-img"></image>
-    <text class="tip-text">空空如也~</text>
+    <!-- 空白购物车区域 -->
+    <view class="empty-cart" v-else>
+      <image src="../../static/cart_empty@2x.png" class="empty-img"></image>
+      <text class="tip-text">空空如也~</text>
+    </view>
   </view>
 </template>
 

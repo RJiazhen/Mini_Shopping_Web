@@ -1,5 +1,6 @@
 <template>
   <view class="my-container">
+    <watermark></watermark>
     <my-login v-if="!token"></my-login>
     <my-userinfo v-else></my-userinfo>
   </view>

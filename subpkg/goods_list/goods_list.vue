@@ -1,5 +1,6 @@
 <template>
   <view>
+    <watermark></watermark>
     <view class="goods-list">
       <!--  -->
       <view v-for="(goods, i) in goodsList" :key="i" @click="gotoGoodsDetail(goods)">

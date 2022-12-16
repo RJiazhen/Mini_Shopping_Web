@@ -1,30 +1,33 @@
 <template>
-  <view class="search-bar">
-    <!-- 注意如果需要修改搜索框的背景颜色需要去修改 uni-search-bar.vue 源代码文件 -->
-    <!-- 如果需要自动获取焦点，则需要修改源文件中show和showSync的值为true -->
-    <uni-search-bar @input="input" :radius="100" cancelButton="none"></uni-search-bar>
-  </view>
-  <!-- 搜索建议列表-->
-  <!-- 根据searchResult的长度判断是否渲染该区域以及搜索历史区域 -->
-  <view class="sugg-list" v-if="searchResult.length!==0">
-    <view class="sugg-item" v-for="(item, i) in searchResult" :key="i" v-on:click="gotoDetail(item)">
-      <view class="goods-name">{{item.goods_name}}</view>
-      <uni-icons type="arrowright" size="16"></uni-icons>
+  <view>
+    <watermark></watermark>
+    <view class="search-bar">
+      <!-- 注意如果需要修改搜索框的背景颜色需要去修改 uni-search-bar.vue 源代码文件 -->
+      <!-- 如果需要自动获取焦点，则需要修改源文件中show和showSync的值为true -->
+      <uni-search-bar @input="input" :radius="100" cancelButton="none"></uni-search-bar>
     </view>
-  </view>
-
-  <!-- 搜索历史 -->
-  <!-- 这里的v-else搭配搜索建议列表的v-if，用来动态确定是否渲染该区域 -->
-  <view class="search-history" v-else>
-    <view class="search-history-title">
-      <text>搜索历史</text>
-      <uni-icons type="trash" size="25" v-on:click="cleanSearchHistory"></uni-icons>
+    <!-- 搜索建议列表-->
+    <!-- 根据searchResult的长度判断是否渲染该区域以及搜索历史区域 -->
+    <view class="sugg-list" v-if="searchResult.length!==0">
+      <view class="sugg-item" v-for="(item, i) in searchResult" :key="i" v-on:click="gotoDetail(item)">
+        <view class="goods-name">{{item.goods_name}}</view>
+        <uni-icons type="arrowright" size="16"></uni-icons>
+      </view>
     </view>
-    <view class="search-history-list">
 
-      <uni-tag :text="item" v-for="(item,i) in historys" :key="i" v-on:click="gotoGoodsList(item)">
-      </uni-tag>
+    <!-- 搜索历史 -->
+    <!-- 这里的v-else搭配搜索建议列表的v-if，用来动态确定是否渲染该区域 -->
+    <view class="search-history" v-else>
+      <view class="search-history-title">
+        <text>搜索历史</text>
+        <uni-icons type="trash" size="25" v-on:click="cleanSearchHistory"></uni-icons>
+      </view>
+      <view class="search-history-list">
 
+        <uni-tag :text="item" v-for="(item,i) in historys" :key="i" v-on:click="gotoGoodsList(item)">
+        </uni-tag>
+
+      </view>
     </view>
   </view>
 </template>

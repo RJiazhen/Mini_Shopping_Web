@@ -1,44 +1,47 @@
 <template>
-  <!-- 只有在接收了数据，有good_name之后再渲染页面 -->
-  <view v-if="goods_info.goods_name">
-    <!-- 轮播图 -->
-    <swiper :indicator-dots="true" :autoplay="true" :interval="3000" :duration="1000" circular="true">
-      <swiper-item v-for="(item, i) in goods_info.pics" :key="i">
-        <!-- 给图片绑定一个点击事件，触发图片预览窗口 -->
-        <image :src="item.pics_big" @click="preview(i)"></image>
-      </swiper-item>
-    </swiper>
-    <!-- 商品信息区域 -->
-    <view class="goods-info-box">
-      <!-- 商品价格 -->
-      <view class="price">
-        ¥{{goods_info.goods_price}}
-      </view>
-      <!-- 商品信息主体区域 -->
-      <view class="goods-info-body">
-        <!-- 商品名称 -->
-        <view class="goods_name">
-          {{goods_info.goods_name}}
+  <view>
+    <watermark></watermark>
+    <!-- 只有在接收了数据，有good_name之后再渲染页面 -->
+    <view v-if="goods_info.goods_name">
+      <!-- 轮播图 -->
+      <swiper :indicator-dots="true" :autoplay="true" :interval="3000" :duration="1000" circular="true">
+        <swiper-item v-for="(item, i) in goods_info.pics" :key="i">
+          <!-- 给图片绑定一个点击事件，触发图片预览窗口 -->
+          <image :src="item.pics_big" @click="preview(i)"></image>
+        </swiper-item>
+      </swiper>
+      <!-- 商品信息区域 -->
+      <view class="goods-info-box">
+        <!-- 商品价格 -->
+        <view class="price">
+          ¥{{goods_info.goods_price}}
         </view>
-        <!-- 收藏 -->
-        <view class="favi">
-          <uni-icons type="star" size="18" color="gray"></uni-icons>
-          <text>收藏</text>
+        <!-- 商品信息主体区域 -->
+        <view class="goods-info-body">
+          <!-- 商品名称 -->
+          <view class="goods_name">
+            {{goods_info.goods_name}}
+          </view>
+          <!-- 收藏 -->
+          <view class="favi">
+            <uni-icons type="star" size="18" color="gray"></uni-icons>
+            <text>收藏</text>
+          </view>
         </view>
-      </view>
-      <!-- 运费 -->
-      <view class="freight">
-        快递：免运费
+        <!-- 运费 -->
+        <view class="freight">
+          快递：免运费
+        </view>
       </view>
     </view>
+    <!-- 底部 添加购物车 导航栏 -->
+    <view class="goods-nav">
+      <uni-goods-nav :options="options" :fill="true" :button-group="buttonGroup" @click="onClick"
+        @buttonClick="buttonClick" />
+    </view>
+    <!-- 商品详情 -->
+    <rich-text class="goods-detail-container" :nodes="goods_info.goods_introduce"></rich-text>
   </view>
-  <!-- 底部 添加购物车 导航栏 -->
-  <view class="goods-nav">
-    <uni-goods-nav :options="options" :fill="true" :button-group="buttonGroup" @click="onClick"
-      @buttonClick="buttonClick" />
-  </view>
-  <!-- 商品详情 -->
-  <rich-text class="goods-detail-container" :nodes="goods_info.goods_introduce"></rich-text>
 </template>
 
 <script>

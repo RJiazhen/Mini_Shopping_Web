@@ -1,35 +1,38 @@
 <template>
-  <my-search v-on:myclick="gotoSearch"></my-search>
   <view>
-    <view class="scroll-view-container">
-      <!-- 左侧分类列表 -->
-      <scroll-view class="left-scroll-view" scroll-y="true" :style="{height: windowHeight + 'px'}">
-        <template v-for="(item, i) in cateList" :key="i">
-          <view :class="['left-scroll-view-item', i===active?'active':'']" v-on:click="activeChange(i)">
-            {{item.cat_name}}
-          </view>
-        </template>
-        <view class="left-scroll-view-item active">left</view>
-      </scroll-view>
-      <!-- 右侧二级分类列表 -->
-      <scroll-view class="right-cate-list" scroll-y="true" :style="{height: windowHeight + 'px'}"
-        :scroll-top="scrollTop">
-        <template v-for="(item2, i2) in catelevel2" :key="i2">
-          <!-- 二级分类标题 -->
-          <view class="cate-lv2">
-            <view class="cate-lv2-title">/ {{item2.cat_name}} /</view>
-            <!-- 三级分类列表 -->
-            <view class="cate-lv3-list">
-              <template v-for="(item3,i3) in item2.children" :key="i3">
-                <view class="cate-lv3-item" v-on:click="gotoGoodsList(item3)">
-                  <image src="/static/errorimage.png" mode="aspectFill"></image>
-                  <text> {{item3.cat_name}}</text>
-                </view>
-              </template>
+    <watermark></watermark>
+    <my-search v-on:myclick="gotoSearch"></my-search>
+    <view>
+      <view class="scroll-view-container">
+        <!-- 左侧分类列表 -->
+        <scroll-view class="left-scroll-view" scroll-y="true" :style="{height: windowHeight + 'px'}">
+          <template v-for="(item, i) in cateList" :key="i">
+            <view :class="['left-scroll-view-item', i===active?'active':'']" v-on:click="activeChange(i)">
+              {{item.cat_name}}
             </view>
-          </view>
-        </template>
-      </scroll-view>
+          </template>
+          <view class="left-scroll-view-item active">left</view>
+        </scroll-view>
+        <!-- 右侧二级分类列表 -->
+        <scroll-view class="right-cate-list" scroll-y="true" :style="{height: windowHeight + 'px'}"
+          :scroll-top="scrollTop">
+          <template v-for="(item2, i2) in catelevel2" :key="i2">
+            <!-- 二级分类标题 -->
+            <view class="cate-lv2">
+              <view class="cate-lv2-title">/ {{item2.cat_name}} /</view>
+              <!-- 三级分类列表 -->
+              <view class="cate-lv3-list">
+                <template v-for="(item3,i3) in item2.children" :key="i3">
+                  <view class="cate-lv3-item" v-on:click="gotoGoodsList(item3)">
+                    <image src="/static/errorimage.png" mode="aspectFill"></image>
+                    <text> {{item3.cat_name}}</text>
+                  </view>
+                </template>
+              </view>
+            </view>
+          </template>
+        </scroll-view>
+      </view>
     </view>
   </view>
 </template>
@@ -71,7 +74,6 @@
 
         // 设置默认的二级分类菜单数据
         this.catelevel2 = this.cateList[0].children
-        console.log(this.cateList);
       },
 
       // 切换出于激活状态的左侧item
