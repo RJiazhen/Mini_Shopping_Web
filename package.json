@@ -1,0 +1,17 @@
+{
+  "name": "uni_project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@escook/request-miniprogram": "^0.2.1",
+    "vue-lazyload": "^3.0.0-rc.2",
+    "vuex": "^4.0.2"
+  }
+}

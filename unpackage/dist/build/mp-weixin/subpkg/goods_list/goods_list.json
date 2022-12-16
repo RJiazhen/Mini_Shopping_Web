@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "",
+  "enablePullDownRefresh": true,
+  "backgroundColor": "#f8f8f8",
+  "onReachBottomDistance": 150,
+  "usingComponents": {
+    "my-goods": "../../components/my-goods/my-goods"
+  }
+}
